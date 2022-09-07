@@ -43,6 +43,7 @@ class _HomePageState extends State<HomePage> {
       future: Hive.openBox("tasks"),
       builder: (BuildContext _context, AsyncSnapshot _snapshot) {
         if (_snapshot.connectionState == ConnectionState.done) {
+          _box = _snapshot.data;
           return _taskList();
         } else {
           return const Center(
