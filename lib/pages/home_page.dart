@@ -11,6 +11,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   late double _deviceHeight, _deviceWidth;
+  String? _newTaskContent;
 
   _HomePageState();
 
@@ -18,6 +19,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     _deviceHeight = MediaQuery.of(context).size.height;
     _deviceWidth = MediaQuery.of(context).size.width;
+    print("Input Value: $_newTaskContent");
 
     return Scaffold(
       appBar: AppBar(
@@ -84,7 +86,17 @@ class _HomePageState extends State<HomePage> {
     showDialog(
       context: context,
       builder: (BuildContext _context) {
-        return AlertDialog();
+        return AlertDialog(
+          title: const Text("Add New Task!"),
+          content: TextField(
+            onSubmitted: (_value) {},
+            onChanged: (_value) {
+              setState(() {
+                _newTaskContent = _value;
+              });
+            },
+          ),
+        );
       },
     );
   }
