@@ -38,6 +38,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
+
   Widget _taskView() {
     return FutureBuilder(
       future: Hive.openBox("tasks"),
@@ -53,6 +54,7 @@ class _HomePageState extends State<HomePage> {
       },
     );
   }
+
 
   Widget _taskList() {
     return ListView(
