@@ -103,7 +103,6 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-
   void _displayTaskPopup() {
     showDialog(
       context: context,
