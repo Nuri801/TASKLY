@@ -54,6 +54,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
+
   Widget _taskList() {
     return ListView(
       children: [
@@ -90,6 +91,7 @@ class _HomePageState extends State<HomePage> {
       ],
     );
   }
+
 
   Widget _addTaskButton() {
     return FloatingActionButton(
