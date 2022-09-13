@@ -93,7 +93,6 @@ class _HomePageState extends State<HomePage> {
   }
 
 
-
   Widget _addTaskButton() {
     return FloatingActionButton(
       onPressed: _displayTaskPopup,
