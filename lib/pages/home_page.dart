@@ -54,7 +54,6 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-
   Widget _taskList() {
     return ListView(
       children: [
