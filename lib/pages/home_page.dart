@@ -10,6 +10,7 @@ class HomePage extends StatefulWidget {
   }
 }
 
+
 class _HomePageState extends State<HomePage> {
   late double _deviceHeight, _deviceWidth;
   String? _newTaskContent;
