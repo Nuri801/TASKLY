@@ -10,6 +10,7 @@ class HomePage extends StatefulWidget {
   }
 }
 
+
 class _HomePageState extends State<HomePage> {
   late double _deviceHeight, _deviceWidth;
   String? _newTaskContent;
@@ -37,6 +38,7 @@ class _HomePageState extends State<HomePage> {
       floatingActionButton: _addTaskButton(),
     );
   }
+
 
   Widget _taskView() {
     return FutureBuilder(
