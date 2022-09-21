@@ -77,7 +77,9 @@ class _HomePageState extends State<HomePage> {
             task.timestamp.toString(),
           ),
           trailing: Icon(
-            Icons.check_box_outlined,
+            task.done
+                ? Icons.check_box_outlined
+                : Icons.check_box_outline_blank,
             color: Colors.red,
           ),
         );
