@@ -43,7 +43,7 @@ class _HomePageState extends State<HomePage> {
     return FutureBuilder(
       future: Hive.openBox("tasks"),
       builder: (BuildContext _context, AsyncSnapshot _snapshot) {
-        if (_snapshot.connectionState == ConnectionState.done) {
+        if (_snapshot.hasData) {
           _box = _snapshot.data;
           return _taskList();
         } else {
@@ -82,11 +82,22 @@ class _HomePageState extends State<HomePage> {
                 : Icons.check_box_outline_blank,
             color: Colors.red,
           ),
+          onTap: () {
+              task.done = !task.done;
+              _box!.putAt(
+                _index,
+                task.toMap(),
+              );
+              setState(() {});
+          },
+          onLongPress: () {
+            _box!.deleteAt(_index);
+            setState(() {});
+          },
         );
       },
     );
   }
-
 
   Widget _addTaskButton() {
     return FloatingActionButton(
@@ -104,7 +115,19 @@ class _HomePageState extends State<HomePage> {
         return AlertDialog(
           title: const Text("Add New Task!"),
           content: TextField(
-            onSubmitted: (_value) {},
+            onSubmitted: (_) {
+              if (_newTaskContent != null) {
+                var _task = Task(
+                    content: _newTaskContent!,
+                    timestamp: DateTime.now(),
+                    done: false);
+                _box!.add(_task.toMap());
+                setState(() {
+                  _newTaskContent = null;
+                  Navigator.pop(context);
+                });
+              }
+            },
             onChanged: (_value) {
               setState(() {
                 _newTaskContent = _value;
