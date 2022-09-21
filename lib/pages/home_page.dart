@@ -62,39 +62,26 @@ class _HomePageState extends State<HomePage> {
 
     List tasks = _box!.values.toList();
 
-    return ListView(
-      children: [
-        ListTile(
+    return ListView.builder(
+      itemCount: tasks.length,
+      itemBuilder: (BuildContext _context, int _index) {
+        var task = Task.fromMap(tasks[_index]);
+        return ListTile(
           title: Text(
-            "Do Laundry!",
+            task.content,
             style: TextStyle(
-              decoration: TextDecoration.lineThrough,
+              decoration: task.done ? TextDecoration.lineThrough : null,
             ),
           ),
           subtitle: Text(
-            DateTime.now().toString(),
+            task.timestamp.toString(),
           ),
           trailing: Icon(
             Icons.check_box_outlined,
             color: Colors.red,
           ),
-        ),
-        ListTile(
-          title: Text(
-            "Do Laundry!",
-            style: TextStyle(
-              decoration: TextDecoration.lineThrough,
-            ),
-          ),
-          subtitle: Text(
-            DateTime.now().toString(),
-          ),
-          trailing: Icon(
-            Icons.check_box_outlined,
-            color: Colors.red,
-          ),
-        ),
-      ],
+        );
+      },
     );
   }
 
