@@ -61,44 +61,46 @@ class _HomePageState extends State<HomePage> {
     // _box?.add(_newTask.toMap());
 
     List tasks = _box!.values.toList();
-
-    return ListView.builder(
-      itemCount: tasks.length,
-      itemBuilder: (BuildContext _context, int _index) {
-        var task = Task.fromMap(tasks[_index]);
-        return ListTile(
-          title: Text(
-            task.content,
-            style: TextStyle(
-              decoration: task.done ? TextDecoration.lineThrough : null,
+    if (tasks.isEmpty) {
+      return Center(child: Text('No tasks yet!'));
+    } else {
+      return ListView.builder(
+        itemCount: tasks.length,
+        itemBuilder: (BuildContext _context, int _index) {
+          var task = Task.fromMap(tasks[_index]);
+          return ListTile(
+            title: Text(
+              task.content,
+              style: TextStyle(
+                decoration: task.done ? TextDecoration.lineThrough : null,
+              ),
             ),
-          ),
-          subtitle: Text(
-            task.timestamp.toString(),
-          ),
-          trailing: Icon(
-            task.done
-                ? Icons.check_box_outlined
-                : Icons.check_box_outline_blank,
-            color: Colors.red,
-          ),
-          onTap: () {
+            subtitle: Text(
+              task.timestamp.toString(),
+            ),
+            trailing: Icon(
+              task.done
+                  ? Icons.check_box_outlined
+                  : Icons.check_box_outline_blank,
+              color: Colors.red,
+            ),
+            onTap: () {
               task.done = !task.done;
               _box!.putAt(
                 _index,
                 task.toMap(),
               );
               setState(() {});
-          },
-          onLongPress: () {
-            _box!.deleteAt(_index);
-            setState(() {});
-          },
-        );
-      },
-    );
+            },
+            onLongPress: () {
+              _box!.deleteAt(_index);
+              setState(() {});
+            },
+          );
+        },
+      );
+    }
   }
-
 
   Widget _addTaskButton() {
     return FloatingActionButton(
