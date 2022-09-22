@@ -56,9 +56,6 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget _taskList() {
-    // Task _newTask =
-    //     Task(content: "Go To Gym", timestamp: DateTime.now(), done: false);
-    // _box?.add(_newTask.toMap());
 
     List tasks = _box!.values.toList();
     if (tasks.isEmpty) {
